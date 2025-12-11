@@ -2,32 +2,65 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>注文追加</title>
+    <title>成績追加</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='base-style.css') }}">
 </head>
 <body>
-    <h1>新しい注文を追加</h1>
+    <h1>新しく追加</h1>
     <ul class="breadcrumb">
         <li><a href="{{ url_for('index') }}">HOME</a></li>
-        <li><a href="{{ url_for('order.list') }}">注文一覧</a></li>
-        <li>新規注文</li>
+        <li><a href="{{ url_for('order.list') }}">成績一覧</a></li>
+        <li>新規入力</li>
     </ul>
     
-    <form action="{{ url_for('order.add') }}" method="post">
-        <label>ユーザー: 
-            <select name="user_id" required>
+    <form action="{{ url_for('order.add') }}" method="post"> 
+        <div>
+            <label for="user_id">生徒名:</label>
+            <select id="user_id" name="user_id" required>
                 {% for user in users %}
                     <option value="{{ user.id }}">{{ user.name }}</option>
                 {% endfor %}
             </select>
-        </label><br>
-        <label>製品: 
-            <select name="product_id" required>
+        </div>
+
+        <div>
+            <label for="product_id">科目:</label>
+            <select id="product_id" name="product_id" required>
                 {% for product in products %}
                     <option value="{{ product.id }}">{{ product.name }}</option>
                 {% endfor %}
             </select>
-        </label><br>
+        </div>
+
+        <div>
+            <label for="type">種類:</label>
+            <select id="type" name="type" required>
+                <option value="１学期中間">１学期中間</option>
+                <option value="１学期期末">１学期期末</option>
+                <option value="２学期中間">２学期中間</option>
+                <option value="２学期期末">２学期期末</option>
+                <option value="学年末">学年末</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="test_result">テスト結果（0〜100）:</label>
+            <input type="number"
+                id="test_result"
+                name="test_result"
+                min="0" max="100" step="1"
+                required inputmode="numeric" pattern="\d+">
+            <script>
+                document.getElementById('test_result').addEventListener('input', function(e) {
+                const v = e.target.value;
+                if (v !== '' && (Number(v) < 0 || Number(v) > 100)) {
+                  e.target.setCustomValidity('0〜100の範囲で入力してください');
+                } else {
+                    e.target.setCustomValidity('');
+                }
+            });
+            </script>
+        </div>
         <button type="submit">追加</button>
     </form>
 </body>
