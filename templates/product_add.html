@@ -2,7 +2,8 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>科目追加</title>
+    <title>科目を追加</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='base-style.css') }}">
 </head>
 <body>
@@ -14,8 +15,8 @@
     </ul>
 
     <form action="{{ url_for('product.add') }}" method="post">
-        <label>科目名: <input type="text" name="name" required></label><br>
-        <label>先生: <input type="number" step="1" name="price" required></label><br>
+        <label>教科名: <input type="text" name="name" required></label><br>
+        <label>講師名: <input type="text" step="1" name="price" required></label><br>
 
         <button type="submit">追加</button>
     </form>
