@@ -1,6 +1,5 @@
-from peewee import Model, CharField, DecimalField
+from peewee import Model, CharField, DecimalField, Check
 from .db import db
-from peewee import Check
 
 class Product(Model):
     name = CharField()
