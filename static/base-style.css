@@ -13,7 +13,8 @@ table {
   margin-bottom: 2rem;
 }
 
-th, td {
+th,
+td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
@@ -28,12 +29,74 @@ th {
   margin-bottom: 2rem;
   list-style: none;
 }
+
 .breadcrumb li {
   display: inline;
 }
+
 .breadcrumb li::after {
   content: " > ";
 }
+
 .breadcrumb li:nth-last-child()::after {
   content: "";
 }
+
+
+/* ▼ テーブルの行にカーソルを合わせた時だけ背景色を変更 */
+table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* ▼ 区切り線を少し薄く */
+th, td {
+  border: 1px solid #f0f0f0;
+}
+
+/* 編集ボタンの変更 */
+table tbody tr td:first-child a {
+    color: #0366d6;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+table tbody tr td:first-child a:hover {
+    text-decoration: underline;
+    opacity: 1;
+}
+
+
+/* ▼ パンくずの改善（自然な見た目に） */
+.breadcrumb {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.breadcrumb li a {
+  color: #0366d6;
+  text-decoration: none;
+  font-weight: normal; /* 太さを落とす */
+}
+
+.breadcrumb li a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb li::after {
+  content: ">";
+  color: #aaa;
+  margin: 0 0.3rem; /* 記号の前後を狭めて自然にする */
+}
+
+.breadcrumb li:last-child::after {
+  content: "";
+}
+
