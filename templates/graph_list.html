@@ -7,6 +7,32 @@
 </head>
 <body>
     <h1>{{ title }}</h1>
-    
+
+    <form method="get" action="{{ url_for('graph.histogram') }}">
+        <div>
+            <label>学年：</label>
+            <select name="grade">
+                <option value="">指定なし</option>
+                <option value="1">1年</option>
+                <option value="2">2年</option>
+                <option value="3">3年</option>
+            </select>
+        </div>
+
+        <div>
+            <label>科目：</label>
+            <input type="text" name="subject" placeholder="例：数学">
+        </div>
+
+        <button type="submit">ヒストグラム表示</button>
+    </form>
+
+    <hr>
+
+    {% if request.args %}
+        <img src="{{ url_for('graph.histogram',
+            grade=request.args.get('grade'),
+            subject=request.args.get('subject')) }}">
+    {% endif %}
 </body>
 </html>
