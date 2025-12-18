@@ -8,7 +8,7 @@ from .order import Order
 MODELS = [
     User,
     Product,
-    Order,
+    Order
 ]
 
 # データベースの初期化関数
